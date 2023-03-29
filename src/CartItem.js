@@ -5,10 +5,16 @@ class CartItem extends React.Component{
         super();
         this.state = {
             title: 'Phone',
-            price:999,
+            price:true,
             qty:1,
             img:''
         }
+    }
+
+    increaseQuantity = () =>{
+        console.log('this',this.state);
+        // this.state.qty++;
+        // console.log('qty',this.state.qty);
     }
 
     render(){
@@ -23,9 +29,22 @@ class CartItem extends React.Component{
                     <div style={{color: '#777'}}>Rs. {price}</div>
                     <div style={{color: '#777'}}>Qty: {qty}</div>
                     <div className='cart-item-actions'>
-                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828926.png" alt="increase" className='action-icons'/>
-                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828906.png" alt="decrease" className='action-icons'/>
-                        <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="delete" className='action-icons'/>
+                        <img 
+                            src="https://cdn-icons-png.flaticon.com/512/1828/1828926.png" 
+                            alt="increase" 
+                            className='action-icons'
+                            onClick={this.increaseQuantity}
+                        />
+                        <img 
+                            src="https://cdn-icons-png.flaticon.com/512/1828/1828906.png" 
+                            alt="decrease" 
+                            className='action-icons'
+                        />
+                        <img 
+                            src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" 
+                            alt="delete" 
+                            className='action-icons'
+                        />
                     </div>
                 </div>
             </div>
