@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItem = () => {
+const CartItem = (props) => {
     
     //increaseQuantity = () =>{
         
@@ -30,8 +30,11 @@ const CartItem = () => {
     //     })
     // }
     
-    const {title, price, qty} = this.props.product;
-    const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct } = this.props;
+    const {title, price, qty} = props.product;
+    const { product, 
+        onIncreaseQuantity,
+        onDecreaseQuantity,
+        onDeleteProduct } = props;
     return(
         <div className='cart-item'>
             <div className='left-block'>

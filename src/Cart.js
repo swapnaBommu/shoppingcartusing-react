@@ -1,98 +1,22 @@
-import React from 'react';
-import CartItem from './CartItem';
-class Cart extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            products:[
-                {
-                    title: 'Phone',
-                    price:9999,
-                    qty:1,
-                    img:'',
-                    id:1
-                },
-                {
-                    title: 'watch',
-                    price:250,
-                    qty:4,
-                    img:'',
-                    id:2
-                },
-                {
-                    title: 'Laptop',
-                    price:12000,
-                    qty:100,
-                    img:'',
-                    id:3
-                }
+import React from "react";
+import CartItem from "./CartItem";
+const Cart = (props) => {
+  const { products } = props;
+  return (
+    <div className="cart">
+      {products.map((product) => {
+        return (
+          <CartItem
+            product={product}
+            key={product.id}
+            onIncreaseQuantity={props.onIncreaseQuantity}
+            onDecreaseQuantity={props.onDecreaseQuantity}
+            onDeleteProduct={props.onDeleteProduct}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
-            ]
-        }
-    }
-
-    handleIncreaseQuantity =(product) =>{
-        //get the products arrray from state
-      const { products } = this.state;
-      //get the index of the product for which qty need to increase
-      const index = products.indexOf(product);
-        //increasing the qty
-      products[index].qty +=1;
-
-      this.setState({
-        products
-      })
-    
-    }
-
-    handleDecreaseQuantity =(product) =>{
-        //get the products arrray from state
-      const { products } = this.state;
-      //get the index of the product for which qty need to decrease
-      const index = products.indexOf(product);
-      if( products[index].qty === 0){
-        return;
-      }
-        //increasing the qty
-      products[index].qty -=1;
-
-      this.setState({
-        products
-      })
-    
-    }
-    
-    hndleDeleteProduct = (id) =>{
-      const { products } = this.state;
-
-      const items = products.filter((item) => item.id != id);
-
-      this.setState({
-        products: items
-      })
-    }
-    
-    render(){
-        const { products } = this.state;
-       return(
-        <div className='cart'>
-            {products.map((product) => {
-                return (
-                    <CartItem 
-                        product={product} 
-                        key={product.id}
-                        onIncreaseQuantity = {this.handleIncreaseQuantity}
-                        onDecreaseQuantity = {this.handleDecreaseQuantity}
-                        onDeleteProduct = {this.hndleDeleteProduct}
-                    />
-                )
-            })}
-          
-           
-        </div>
-       )
-
-    }
-
-}
 export default Cart;
