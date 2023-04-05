@@ -11,21 +11,21 @@ class App extends  React.Component {
                 title: 'Phone',
                 price:9999,
                 qty:1,
-                img:'',
+                img:'https://img.freepik.com/free-photo/phone-screen-with-abstract-marble-aesthetic_53876-145553.jpg',
                 id:1
             },
             {
                 title: 'watch',
                 price:250,
                 qty:4,
-                img:'',
+                img:'https://rukminim1.flixcart.com/image/832/832/krayqa80/watch/y/0/x/fancy-bracelet-rose-gold-ladies-watches-girls-wrist-watch-for-original-imag54cntykjqsbg.jpeg?q=70',
                 id:2
             },
             {
                 title: 'Laptop',
                 price:12000,
                 qty:100,
-                img:'',
+                img:'https://media.istockphoto.com/id/479520746/photo/laptop-with-blank-screen-on-white.jpg?s=612x612&w=0&k=20&c=V5dj0ayS8He0BP4x15WR5t5NKYzWTKv7VdWvD2SAVAM=',
                 id:3
             }
 
@@ -83,6 +83,16 @@ getCartCount(){
   });
   return count;
 }
+getCartTotal = () => {
+  const { products } = this.state;
+  let total = 0;
+  products.map((product) =>{
+    total += product.qty * product.price;
+  });
+
+  return total;
+
+}
  render(){
   const { products } = this.state;
   return ( 
@@ -94,6 +104,7 @@ getCartCount(){
         onDecreaseQuantity = {this.handleDecreaseQuantity}
         onDeleteProduct = {this.hndleDeleteProduct}
       />
+      <div >TOTAL: {this.getCartTotal()}</div>
     </div>
   );
  }
